@@ -1,0 +1,87 @@
+<html ng-app="home">
+  <head>
+    <title>Home</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/css2/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css2/font-awesome.min.css">
+    <link href="css/css2/style.css" rel="stylesheet" ><style type="text/css">
+      input[type=submit]
+  {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+   input[type=file]
+  {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  body
+  {
+    background-color: olive;
+  }
+
+    </style>
+  </head>
+  <body ng-controller="home">
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="header_info panel-heading">
+          <div class="rows">
+            <div class="col-md-8 ">
+              <p class="welcome_user">Hello {{name}}</p>              
+            </div>
+            <div class="col-md-2 ">
+              <div class="logout_btn">
+                <a id="logout"  ng-click="logout()">Logout</a>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                <br/><br/>
+                <input type="file" name="images"> </input>
+                <input type="submit" value="Upload" onmouseover="style='background-color:red'" onmouseout="style='background-color:blue'"></input>
+                </form>
+                <form action="/my_images" method="post">
+                <input type="submit" value="My Images"> </input>
+                </form>
+              </div>
+            </div>             
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="rows">
+            <div class="col-md-12 list_con" style="background-color:#696969; color:white;">
+              <center><span>Your Friends </span></center>
+              <div class="col-md-8 person_list" style="background-color: lightblue; color:black" ng-repeat="person in persons" hello="{{uid}}" ng-style="{
+                                'display': person.id==uid ? 'none' :'block'
+                        }">
+               
+                <span>&nbsp;{{ person.name }}</span>
+                <span class="online" ng-style="{
+                                'background-color': person.online=='Y' ? '#0EE700' :'red'
+                        }">&nbsp;</span>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+
+<form action="/message" method="post">
+<input type="submit" value="Chat with Your friends"> </input>
+</form>
+
+  </body>
+  
+  <script src = "js/jquery.min.js"></script>
+  <script src = "js/bootstrap.min.js"></script>
+  <script src = "js/angular.min.js"></script>
+  <script src = "js/home.js"></script>
+</html>

@@ -1,0 +1,8 @@
+block content
+  div.container
+   header
+    h1 Your Images
+   div#images
+    - each result in results
+      div.myimage
+      img(src='http://localhost:3000/oneimage'+result._id)

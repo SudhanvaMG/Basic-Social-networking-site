@@ -1,0 +1,99 @@
+<!doctype html>
+  <html>
+   <head>
+   <style type="text/css">
+input[type=submit]
+  {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+      * { margin: 0; padding: 0; box-sizing: border-box;}
+      body { font: 15px Helvetica, Arial;   background-image: url("index.jpg"); background-repeat: no-repeat;  background-size:cover;}
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 100%; margin-right: .5%; }
+      form button { width: 100%; background: green; border: none; padding: 15px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    
+   </style>
+    <title>Chat Application</title>
+    <link rel='stylesheet' href='style.css' type='text/css'/>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  
+  </head>
+  <body> 
+    <ul id="messages" style=" color: olive;" ></ul>
+    <span id="notifyUser"></span>
+    <form id="form" action="" onsubmit="return submitfunction();" > 
+      <input type="hidden" id="user" value="" /><input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." />
+      <input type="submit" id="button" value="Send" style="background-color: green;" onmouseover="style='background-color:red;'" onmouseout="style='background-color:green;'" /> 
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+    
+      var socket = io(); 
+function submitfunction(){
+
+  var from = $('#user').val();
+  var message = $('#m').val();
+  if(message != '') {
+  socket.emit('chatMessage', from, message);
+}
+$('#m').val('').focus();
+  return false;
+}
+ 
+function notifyTyping() { 
+  var user = $('#user').val();
+  socket.emit('notifyUser', user);
+}
+ 
+socket.on('chatMessage', function(from, msg){
+  
+  var me = $('#user').val();
+  var color = (from == me) ? 'green' : 'orange';
+  var from = (from == me) ? 'Me' : from;
+  $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
+  
+  
+  
+});
+ 
+socket.on('notifyUser', function(user){
+  
+    
+  var me = $('#user').val();
+  if(user != me) {
+    $('#notifyUser').text(user + ' is typing ...');
+  }
+  setTimeout(function(){ $('#notifyUser').text(''); }, 10000);
+
+});
+ 
+$(document).ready(function(){
+  
+    
+  var name = makeid();
+  $('#user').val(name);
+  socket.emit('chatMessage', 'Info', '<b>' + name + '</b> has joined the discussion');
+
+
+});
+ 
+function makeid() {
+  var text = "";
+  text = prompt("Enter your name ");
+  return text;
+}
+
+    </script>
+  </body>
+</html>

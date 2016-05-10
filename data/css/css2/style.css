@@ -1,0 +1,85 @@
+body {
+  font-family: cursive;
+}
+.container{
+  padding-top:0px;
+  height: 100%;
+  width: 100%;
+}
+.header_info{
+   height: 50px;
+   width: 100%;
+   padding: 20px;
+   border-radius: 0px !important;
+   background: #5644E9 !important;
+}
+.welcome_user {
+   color: #fff;
+}
+.header_info h2,a{
+  color: #fff;
+  text-decoration: none;
+}
+.header_info h2,a:hover{
+  color: #fff;
+  text-decoration: none;
+}
+.header_info_login{
+  height: 200px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 0px !important;
+  background: #5644E9 !important;
+}
+.header_info_login h2,a{
+  color: #fff;
+  text-decoration: none;
+}
+.header_info_login h2,a:hover{
+  color: #fff;
+  text-decoration: none;
+}
+.info{
+	height: 90%;
+  width: 90%;
+  background-color:#FFF;
+  padding: 20px; 
+  -webkit-box-shadow: 0px 2px 56px -9px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 2px 56px -9px rgba(0,0,0,1);
+  box-shadow: 0px 2px 56px -9px rgba(0,0,0,1);
+}
+.info p{
+	text-align: justify;
+}
+.list_con{
+   height: 500px;
+   border-radius: 0px !important;
+   overflow-y:scroll; 
+}
+.person_list{
+    height: 10%;
+    width: 100%;
+    padding: 6px 25px 7px 19px;
+    margin-top: 1%;
+    border: solid 1px #E6E6E6;
+    background-color: #EEEEEE;
+ }
+ .person_details{
+ 	  height: 15%;
+    width: 100%;
+    padding: 5px;
+    margin-top: 1%;
+    border: solid 1px #000;
+ }
+ .profile-photo{
+    height: 100%;
+    width: 4%;
+ }
+ .online{
+ 	float: right;
+ 	margin-top: 1%;
+ 	height: 15px;
+  width: 15px;
+  background-color: #0EE700;
+  border-radius: 500px;
+ }
